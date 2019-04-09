@@ -27,7 +27,7 @@ $('#window').on('mouseleave',function (){
 
 
 function goToSlide($index){
-  //此处有bug，以下代码并没有切换的问题
+  //此处有bug，以下代码并没有解决切换的问题
   if($index>$buttons.length-1){
     var $index = 0
   }else if($index < 0){
