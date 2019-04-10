@@ -3,9 +3,16 @@ let $images = $("#images");
 let $img = $("#images").children("img");
 let current = 0;
 
+//1.制作假的img
 makeFakeSlides();
+
+//2.初始化图片位置
 $images.css({ transform: "translateX(-168px)" });
+
+//4.切换
 bindEvents();
+
+//5.设置上一张、下一张
 $(next).on('click',function (){
   goToSlide(current+1)
 })
@@ -13,6 +20,7 @@ $(previous).on('click',function (){
   goToSlide(current-1)
 })
 
+//6.设置闹钟，自动轮播
 let setTimer = setInterval(function (){
   goToSlide(current+1)
 },2000)
@@ -24,6 +32,14 @@ $('#window').on('mouseleave',function (){
     goToSlide(current+1)
   },2000)
 })
+
+
+function makeFakeSlides() {
+  let $firstCopy = $img.eq(0).clone(true);
+  let $lastCopy = $img.eq($img.length - 1).clone(true);
+  $images.append($firstCopy);
+  $images.prepend($lastCopy);
+}
 
 
 function goToSlide($index){
@@ -106,9 +122,4 @@ function bindEvents(){
 }
 
 
-function makeFakeSlides() {
-    let $firstCopy = $img.eq(0).clone(true);
-    let $lastCopy = $img.eq($img.length - 1).clone(true);
-    $images.append($firstCopy);
-    $images.prepend($lastCopy);
-  }
+
